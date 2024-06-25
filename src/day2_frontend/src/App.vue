@@ -7,7 +7,8 @@ async function handleSubmit(e) {
   e.preventDefault();
   const target = e.target;
   const name = target.querySelector('#name').value;
-  await day2_backend.greet(name).then((response) => {
+  const birth_day = Number(target.querySelector("#birth_day").value);
+  await day2_backend.greet(name, birth_day).then((response) => {
     greeting.value = response;
   });
 }
@@ -19,8 +20,9 @@ async function handleSubmit(e) {
     <br />
     <br />
     <form action="#" @submit="handleSubmit">
-      <label for="name">Enter your name: &nbsp;</label>
+      <label for="name">Enter your first and bdate: &nbsp;</label>
       <input id="name" alt="Name" type="text" />
+      <input id="birth_day" alt="Birth date" type="number" />
       <button type="submit">Click Me!</button>
     </form>
     <section id="greeting">{{ greeting }}</section>
