@@ -23,3 +23,10 @@ fn read_posts() -> Vec<String> {
         posts.borrow().clone()
     })
 }
+
+#[ic_cdk::update]
+fn clear_posts() {
+    POSTS.with(|posts: &RefCell<Vec<String>>| {
+        *posts.borrow_mut() = Vec::new()
+    });
+}

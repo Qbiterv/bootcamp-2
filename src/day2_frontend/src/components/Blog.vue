@@ -1,11 +1,15 @@
 <template>
-    <div >
-        <label>New post value:</label>
-        <input v-model="newPost" type="text">
-        <button @click="addPost">Send post</button>
-        <br>
-        <button @click="getPosts">Update</button>
-        {{ posts }}
+    <div>
+        <center>
+            <label>New post value:</label>
+            <input v-model="newPost" type="text">
+            <button @click="addPost">Send post</button>
+            <br>
+            <button @click="getPosts">Update</button>
+            <button @click="clearPosts">Clear</button>
+            <br>
+            {{ posts }}
+        </center>
     </div>
 </template>
 
@@ -25,6 +29,9 @@ export default {
         },
         async addPost() {
             await day2_backend.add_post(this.newPost);
+        },
+        async clearPosts() {
+            await day2_backend.clear_posts();
         }
     }
 }
