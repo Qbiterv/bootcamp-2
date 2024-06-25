@@ -3,7 +3,7 @@
         <label>New post value:</label>
         <input v-model="newPost" type="text">
         <button @click="addPost">Send post</button>
-
+        <br>
         <button @click="getPosts">Update</button>
         {{ posts }}
     </div>
@@ -15,7 +15,8 @@ import { day2_backend } from 'declarations/day2_backend/index';
 export default {
     data() {
         return {
-            posts: []
+            posts: [],
+            newPost: ""
         }
     },
     methods: {
