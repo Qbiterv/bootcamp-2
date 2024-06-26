@@ -1,15 +1,22 @@
 <template>
     <div>
-        <center>
-            <label>New post value:</label>
+        <h1 class="text-blue-600 text-center text-4xl">All posts</h1>
+        <p class=" text-center text-sm">click on post to delete</p>
+        <div class="w-70 flex gap-5">
+            <label>Value:</label>
             <input v-model="newPost" type="text">
-            <button @click="addPost">Send post</button>
-            <br>
-            <button @click="getPosts">Update</button>
-            <button @click="clearPosts">Clear</button>
-            <br>
-            {{ posts }}
-        </center>
+            <button @click="addPost">Add post</button>
+        </div>
+        <div class="w-30 flex flex-row-reverse gap-5">
+            <button class="float-right bg-blue-600 p-2 text-white rounded" @click="getPosts">Update</button>
+            <button class="bg-blue-600 p-2 text-white rounded" @click="clearPosts">Clear</button>
+        </div>
+        <br>
+        <div class="grid grid-cols-5 text-center gap-5">
+            <div v-for="(post, index) in posts" class="drop-shadow-md bg-stone-300 p-5 overflow-auto">
+                <p class=" cursor-pointer" @click="deletePost(index)">{{ post }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -32,7 +39,13 @@ export default {
         },
         async clearPosts() {
             await day2_backend.clear_posts();
+        },
+        async deletePost(id) {
+            await day2_backend.delete_post(id);
         }
+    },
+    async mounted() {
+        this.getPosts();
     }
 }
 </script>

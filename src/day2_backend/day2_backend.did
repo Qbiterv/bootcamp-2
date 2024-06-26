@@ -3,4 +3,6 @@ service : {
     "add_post": (text) -> ();
     "read_posts": () -> (vec text) query;
     "clear_posts": () -> ();
+    "delete_post": (nat64) -> ();
+    "update_post": (nat64, text) -> ();
 }
